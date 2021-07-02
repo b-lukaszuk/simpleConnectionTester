@@ -41,3 +41,7 @@ Napisac to z jakas grafika.
 Stan poczatkowy - randomowy (z randomowa szansa np. 1/3, 1/4 szans na ozycie komorki)
 
 Dopuszczalne sa zmiany typu: zamiast niby adresu url moga byc krotkie liczby typu 1-9
+
+---
+
+Deplyment za: https://github.com/angular-schule/angular-cli-ghpages
