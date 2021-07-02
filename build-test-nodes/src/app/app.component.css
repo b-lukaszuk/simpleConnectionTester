@@ -1,0 +1,34 @@
+canvas {
+    border-style: solid
+}
+
+input[type="text"] {
+    height: 1.2em;
+    font-size: 1.2em;
+}
+
+input[type="text"]:focus {
+    border: solid;
+    border-width: 0.2em;
+    border-color: #3584e4;
+    box-shadow: 0.2em #3584e4;
+    transform: scale(1.05);
+}
+
+button {
+    background-color: #008CBA; /* blue */
+    border: none;
+    border-radius: 0.4em;
+    color: white;
+    padding: 0.4em 0.8em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #3566e4; /* blue */
+}

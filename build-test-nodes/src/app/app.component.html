@@ -1,0 +1,34 @@
+<div>
+  <h1>Simple Node Build-Test App</h1>
+  <table>
+    <tr>
+      <td>
+        <canvas #canvas width="600" height="600"></canvas>
+      </td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td>
+        <h2>Enter Your command below</h2>
+        <h3>B 1 2</h3> 
+	<p>Builds a connection (draws it with black)</p>
+        <h3>T 1 2</h3>
+	<p>Tests if a connection exists (if so draws it with green)</p>
+	<h2> 9 nodes will reset the graph</h2>
+	<p>More info is displayed in the console</p>
+        <input
+          name="userCommand"
+          type="text"
+          [(ngModel)]="userCommand"
+          maxlength="5"
+        />
+        <br />
+        <br />
+        <button type="button" (click)="processUserCommand()">
+          Evaluate command
+        </button>
+	<h2>Result of last operation:</h2>
+	<h3>{{connectionTestResult}}</h3>
+      </td>
+    </tr>
+  </table>
+</div>
+<router-outlet></router-outlet>
