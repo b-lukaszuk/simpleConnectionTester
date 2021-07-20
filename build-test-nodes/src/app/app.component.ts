@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 
 import Graph from "./customClasses/graph";
 import Node from "./customClasses/node";
+import randInt from "./utils/randInt";
 
 @Component({
     selector: 'app-root',
@@ -24,20 +25,57 @@ export class AppComponent implements OnInit {
     public pathCircleFillColor: string = '#008900';
     public userCommand: string = "";
     public graph = new Graph();
-    public positions: number[][] = [
-        [300, 270],
-        [40, 40],
-        [470, 520],
-        [500, 100],
-        [90, 550],
-        [80, 300],
-        [300, 60],
-        [500, 330],
-        [360, 550]
-    ];
+    public positions: number[][] = [];
     public allNodes: Node[] = [];
     public connectedNodes: string[] = [];
     public connectionTestResult: string = "";
+
+    public getRandPosOnCanvas(xUpLim: number = this.canvWidth,
+        yUpLim: number = this.canvHeight,
+        safetyMargin: number = 50): number[] {
+
+        let xCoord: number = randInt(0 + safetyMargin, xUpLim - safetyMargin);
+        let yCoord: number = randInt(0 + safetyMargin, yUpLim - safetyMargin);
+
+        return [xCoord, yCoord];
+    }
+
+    isCollisionOfPositions(pos1: number[], pos2: number[],
+        tolerance: number = 60): Boolean {
+
+        let dx: number = pos1[0] - pos2[0];
+        let dy: number = pos1[1] - pos2[1];
+        // c^2 = a^2 + b^2
+        let c = Math.sqrt((dx * dx) + (dy * dy));
+
+        return c <= tolerance;
+    }
+
+    public doesNodePosOverlapWithPrevNodes(arrPositions: number[][],
+        position: number[]): Boolean {
+        if (arrPositions.length === 0) {
+            return false;
+        } else {
+            for (let i = 0; i < arrPositions.length; i++) {
+                if (this.isCollisionOfPositions(position, arrPositions[i])) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public getPositions(howMany: number = 9) {
+        let positions: number[][] = [];
+        let position: number[] = [];
+        for (let i = 0; i < howMany; i++) {
+            do {
+                position = this.getRandPosOnCanvas();
+            } while (this.doesNodePosOverlapWithPrevNodes(positions, position))
+            positions.push(position);
+        }
+        return positions;
+    }
 
     public getCommandAndArgs(command: string): string[] {
         let sepRegex = /\s+/;
@@ -62,6 +100,7 @@ export class AppComponent implements OnInit {
         this.graph.resetGraph();
         this.allNodes = this.graph.getAllNodes();
         this.userCommand = "";
+        this.positions = this.getPositions();
     }
 
     public displayConnectionTestResult(): void {
@@ -211,5 +250,6 @@ export class AppComponent implements OnInit {
         this.canvWidth = this.canvasRef.nativeElement.width;
         this.canvHeight = this.canvasRef.nativeElement.height;
         this.clearCanvas();
+        this.positions = this.getPositions();
     }
 }
