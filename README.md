@@ -47,3 +47,7 @@ Dopuszczalne sa zmiany typu: zamiast niby adresu url moga byc krotkie liczby typ
 ---
 
 Deplyment za: https://github.com/angular-schule/angular-cli-ghpages
+
+# Warning
+
+**The content of this folder may be incorrect, erroneous and/or harmful. Use it at Your own risk.**
