@@ -51,3 +51,6 @@ Deplyment za: https://github.com/angular-schule/angular-cli-ghpages
 # Warning
 
 **The content of this folder may be incorrect, erroneous and/or harmful. Use it at Your own risk.**
+
+**Zawartość niniejszego katalogu może być nieprawidłowa, błędna czy szkodliwa. Używaj na własne ryzyko.**
+
